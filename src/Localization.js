@@ -25,7 +25,7 @@ function Localization(props) {
           handleChange(newValue);
         }}
         renderInput={(params) => (
-          <TextField {...params} label="Locale" fullWidth />
+          <TextField {...params} label={props.t('location')} fullWidth />
         )}
       />
       <TablePagination

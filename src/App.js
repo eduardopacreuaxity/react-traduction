@@ -16,8 +16,17 @@ function App() {
     [locale, theme],
   );
 
+  const themeTest = createTheme(
+    {
+      palette: {
+        primary: { main: '#1976d2' },
+      },
+    },
+    locales[locale],
+  );
+
   return (
-    <ThemeProvider theme={themeWithLocale}>
+    <ThemeProvider theme={themeTest}>
       <Localization locale={locale} setLocale={setLocale}/>
       <Translate setLocale={setLocale}/>
     </ThemeProvider>
