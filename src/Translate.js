@@ -2,10 +2,14 @@ import * as React from 'react';
 import { withTranslation } from 'react-i18next';
 
 const Translate = (props) => {
+  const handleClick = (language) => {
+    props.i18n.changeLanguage(language);
+    props.setLocale(language);
+  }
   return (
     <>
-      <button onClick={() => props.i18n.changeLanguage('es')}>ESPAÑOL</button>
-      <button onClick={() => props.i18n.changeLanguage('en')}>ENGLISH</button>
+      <button onClick={() => handleClick('esES')}>ESPAÑOL</button>
+      <button onClick={() => handleClick('enUS')}>ENGLISH</button>
       <p>{props.t('title')}</p>
     </>
   );

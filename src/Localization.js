@@ -3,29 +3,35 @@ import TablePagination from '@mui/material/TablePagination';
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import * as locales from '@mui/material/locale';
+import { withTranslation } from 'react-i18next';
 
 function Localization(props) {
+  const tableLocations = { esES: locales.esES, enUS: locales.enUS }
+  const handleChange = (language) => {
+    props.setLocale(language);
+    props.i18n.changeLanguage(language);
+  };
   return (
     <Box sx={{ width: '100%' }}>
+      <p>{props.t('location')}</p>
       <Autocomplete
-        options={Object.keys(locales)}
+        options={Object.keys(tableLocations)}
         getOptionLabel={(key) => `${key.substring(0, 2)}-${key.substring(2, 4)}`}
         style={{ width: 300 }}
         value={props.locale}
         disableClearable
         onChange={(event, newValue) => {
-          props.setLocale(newValue);
+          handleChange(newValue);
         }}
         renderInput={(params) => (
           <TextField {...params} label="Locale" fullWidth />
         )}
       />
       <TablePagination
-        count={2000}
+        count={Object.keys(tableLocations).length}
         rowsPerPage={10}
-        page={1}
+        page={0}
         component="div"
         onPageChange={() => {}}
       />
@@ -33,4 +39,4 @@ function Localization(props) {
   );
 }
 
-export default Localization;
+export default withTranslation() (Localization);

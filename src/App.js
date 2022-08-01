@@ -4,10 +4,10 @@ import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import * as locales from '@mui/material/locale';
 import Localization from './Localization';
 import Translate from './Translate';
-import './i18n';
+import i18next from './i18n';
 
 function App() {
-  const [locale, setLocale] = React.useState('zhCN');
+  const [locale, setLocale] = React.useState(i18next.language);
 
   const theme = useTheme();
 
@@ -19,7 +19,7 @@ function App() {
   return (
     <ThemeProvider theme={themeWithLocale}>
       <Localization locale={locale} setLocale={setLocale}/>
-      <Translate/>
+      <Translate setLocale={setLocale}/>
     </ThemeProvider>
   );
 }
